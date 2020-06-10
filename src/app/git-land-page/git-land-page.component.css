@@ -2,3 +2,26 @@
 {
     margin: 0 auto;
 }
+
+button {
+    float: left;
+    width: 12%;
+    height: 10%;
+    padding: 2px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #0b7dda;
+  }  
+
+  .nouser
+  {
+    color:red;
+    text-align: center;
+  }

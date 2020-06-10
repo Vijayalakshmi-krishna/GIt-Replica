@@ -10,13 +10,15 @@ import { GituserService } from '../gituser.service';
 export class GitLandPageComponent implements OnInit {
   gitForm;
   repoData;
+  repoCount;
   gitUserData;
   gitFollowersData;
   followersCount;
   pageOfItems: Array<any>;
-  ItemCount:number=1;
+  pageOfFollowers:Array<any>
+  noUser:boolean=false;
 
-  constructor(private gituserservice:GituserService) { 
+  constructor(private gituserservice: GituserService) {
 
     this.gitForm = new FormGroup({
       'userName': new FormControl('', Validators.required)
@@ -25,25 +27,30 @@ export class GitLandPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  sendData()
-  {
+  sendData() {
     if (this.gitForm.valid) {
 
       this.gituserservice.getgithubuserData(this.gitForm.value.userName).subscribe((data) => {
-        console.log(data);
-        this.gitUserData=data;
+        //console.log(data);
+        this.gitUserData = data;
+        
       })
 
+      
       this.gituserservice.getgithubuserRepoData(this.gitForm.value.userName).subscribe((data) => {
-        console.log(data);
-        this.repoData=data;
-       
-       
-        
+        //console.log(data);
+        this.repoData = data;
+        this.repoCount=Object.keys(this.repoData).length
+        ///console.log(this.repoCount)
+        if(!this.gitUserData || !this.repoData)
+        {
+          this.noUser=true;
+        }
+
         this.gituserservice.getgithubuserfollowerData(this.gitForm.value.userName).subscribe((data) => {
-          console.log(data);
-          this.gitFollowersData=data;
-          this.followersCount=Object.keys(data).length          
+          //console.log(data);
+          this.gitFollowersData = data;
+          this.followersCount = Object.keys(data).length
         })
 
       })
@@ -51,8 +58,13 @@ export class GitLandPageComponent implements OnInit {
   }
 
   onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
+    // update current page of Repos
     this.pageOfItems = pageOfItems;
-}
+  }
+
+  onChangeFollowers(pageOfFollowers: Array<any>) {
+    // update current page of Followers
+    this.pageOfFollowers = pageOfFollowers;
+  }
 
 }
