@@ -82,13 +82,13 @@
                 </div>
             </div>
         </div>
-        <hr *ngIf="repoCount">
-        <div *ngIf="repoData" class="text-center">
-            <app-paginate [items]="repoData" (changePage)="onChangePage($event)"></app-paginate>
-        </div>
+       
     </div>
 
-
+    <hr *ngIf="repoCount">
+    <div *ngIf="repoData" class="text-center">
+        <app-paginate [items]="repoData" (changePage)="onChangePage($event)"></app-paginate>
+    </div>
 
 
 </div>
