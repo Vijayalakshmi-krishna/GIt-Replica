@@ -1,0 +1,101 @@
+<div class="container">
+    <h1 class="text-primary text-center">Git Hub</h1>
+    <form [formGroup]="gitForm" (submit)="sendData();">
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <input type="text" placeholder="Enter the UserName" class="form-control" formControlName="userName">
+            </div>
+            <div class="col-lg-6">
+                <input type="submit" class="btn btn-primary" value="Go">
+            </div>
+        </div>        
+    </form>
+
+</div>
+
+<hr *ngIf = "gitUserData">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">           
+            <div *ngIf = "gitUserData" class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{gitUserData?.avatar_url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{gitUserData?.login}}</h5>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-8">
+            <div *ngIf = "gitUserData" class="card">
+               
+                <div class="card-body">                 
+                  <a href="#" class="btn btn-secondary">public-repos : {{gitUserData.public_repos}}</a> &nbsp;
+                 
+                  <a href="#" class="btn btn-secondary">Followers:{{gitUserData.followers}}</a> &nbsp;
+                  <a href="#" class="btn btn-secondary">Following:{{gitUserData.following}}</a> 
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <h1 *ngIf = "repoData" class="text-primary text-center">Repositories</h1>
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let item of pageOfItems">
+            <div class="card h-100" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text"> <a href="{{item.owner.html_url}}/{{item.name}}"
+                        class="card-link">{{item.owner.html_url}}/{{item.name}}</a> &nbsp;</p>
+                        <p class="card-text"> <a *ngIf="item.language" href="#" class="btn btn-secondary"> {{item?.language}}</a> &nbsp;
+                        <a *ngIf="item.language" href="#" class="btn btn-secondary"><i class="fa fa-eye" aria-hidden="true"></i> {{item?.watchers_count}}</a> &nbsp;</p>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+<hr *ngIf = "repoData">
+    <div *ngIf = "repoData" class="text-center">
+        <app-paginate [items]="repoData" (changePage)="onChangePage($event)"></app-paginate>
+    </div>
+       
+  
+
+</div>
+
+
+    <!-- <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>REPO Name</th>
+                <th>Repo URL</th>
+                <th>Followers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pageOfItems">
+                <th scope="row">{{ItemCount}}</th>
+                <td>{{item.name}}</td>
+                <td><a href="{{item.owner.html_url}}/{{item.name}}">{{item.owner.html_url}}/{{item.name}}</a></td>
+                <td>@mdo</td>
+
+            </tr>
+
+        </tbody>
+    </table> -->
+
+
+    <!-- <div class="container" *ngFor="let repo of pageOfItems">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{repo.name}}</h5>
+            <a href="{{repo.owner.html_url}}/{{repo.name}}">{{repo.owner.html_url}}/{{repo.name}}</a>
+            <p>Languages:{{repo.language}}</p>
+            <p>Followers:{{followersCount}}</p>      
+        </div>
+    </div>
+</div> -->
