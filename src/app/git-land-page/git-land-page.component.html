@@ -1,18 +1,15 @@
+<!-- Form input section -->
 <div class="container">
-    <h1 class="text-primary text-center">Git Lookup User</h1>
+    <h1 class="text-dark text-center">Git Lookup User</h1>
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" [formGroup]="gitForm"
         (submit)="sendData();">
         <input type="text" placeholder="Enter the username" aria-label="Search"
             class="form-control form-control-sm ml-3 w-75" formControlName="userName">
-
-
-        <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-
-
+        <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
-
 </div>
 
+<!-- User Info section -->
 <hr *ngIf="gitUserData">
 <div class="nouser" *ngIf="!gitUserData && noUser">No Such user specified</div>
 <div *ngIf="gitUserData" class="container">
@@ -30,20 +27,20 @@
         <div class="col-lg-8">
             <div *ngIf="gitUserData" class="card">
                 <div class="card-body text-center">
-                    <p class="card-text"><span class="badge badge-light">Public-Repos:{{gitUserData?.public_repos}}</span> &nbsp;
+                    <p class="card-text"><span
+                            class="badge badge-light">Public-Repos:{{gitUserData?.public_repos}}</span> &nbsp;
                         <span class="badge badge-light">Followers:{{gitUserData?.followers}}</span> &nbsp;
-                        <span class="badge badge-light">Updated At:{{gitUserData?.updated_at | date:'medium'}}</span> &nbsp;</p>
-
-                    <!-- <a href="#" class="btn btn-secondary">Following:{{gitUserData.following}}</a> &nbsp; -->
-
+                        <span class="badge badge-light">Updated At:{{gitUserData?.updated_at | date:'medium'}}</span>
+                        &nbsp;</p>
 
 
                 </div>
             </div>
+            <!-- followers section -->
             <hr *ngIf="followersCount">
-            
-            <div class="container">                
-                <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
+
+            <div class="container">
+                <h1 *ngIf="followersCount" class="text-dark text-center">Followers</h1>
                 <div class="row" *ngFor="let item of pageOfFollowers">
                     <div class="card w-50 follow">
                         <div class="card-body">
@@ -63,30 +60,33 @@
 </div>
 <hr>
 
+<!-- repos section -->
+
 <div class="container">
-    <h1 *ngIf="repoCount" class="text-primary text-center">Repositories</h1>
+    <h1 *ngIf="repoCount" class="text-dark text-center">Repositories</h1>
     <div class="row">
         <div class="col-lg-4" *ngFor="let item of pageOfItems">
             <div class="card h-100" style="width: 18rem;">
-                <div class="card-header"><h5><a href="{{item.owner.html_url}}/{{item.name}}"
-                        class="card-link header-font">{{item?.name}}</a></h5>
-                        <span class="description-text"><i class="fa fa-code-fork" aria-hidden="true"></i>
-                        </span> {{item?.forks_count}} &nbsp;
+                <div class="card-header">
+                    <h5><a href="{{item.owner.html_url}}/{{item.name}}" class="card-link header-font">{{item?.name}}</a>
+                    </h5>
+                    <span class="description-text"><i class="fa fa-code-fork" aria-hidden="true"></i>
+                    </span> {{item?.forks_count}} &nbsp;
 
-                        <span class="description-text"><i class="fa fa-star"></i>
-                        </span> {{item?.stargazers_count}} &nbsp;
-                    </div>
+                    <span class="description-text"><i class="fa fa-star"></i>
+                    </span> {{item?.stargazers_count}} &nbsp;
+                </div>
                 <div class="card-body">
-                    <p class="card-text description-text">{{item?.description}}</p>                  
+                    <p class="card-text description-text">{{item?.description}}</p>
 
                 </div>
 
                 <div class="card-footer text-muted">
                     <p class="card-text"> <span *ngIf="item.language" class="dot"></span> {{item?.language}} &nbsp;
-                        
+
                         <span class="createdat">{{item?.created_at | date:'mediumDate'}}</span>
                     </p>
-                  </div>
+                </div>
             </div>
         </div>
 
@@ -99,37 +99,3 @@
 
 
 </div>
-
-
-<!-- <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>#</th>
-                <th>REPO Name</th>
-                <th>Repo URL</th>
-                <th>Followers</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of pageOfItems">
-                <th scope="row">{{ItemCount}}</th>
-                <td>{{item.name}}</td>
-                <td><a href="{{item.owner.html_url}}/{{item.name}}">{{item.owner.html_url}}/{{item.name}}</a></td>
-                <td>@mdo</td>
-
-            </tr>
-
-        </tbody>
-    </table> -->
-
-
-<!-- <div class="container" *ngFor="let repo of pageOfItems">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{repo.name}}</h5>
-            <a href="{{repo.owner.html_url}}/{{repo.name}}">{{repo.owner.html_url}}/{{repo.name}}</a>
-            <p>Languages:{{repo.language}}</p>
-            <p>Followers:{{followersCount}}</p>      
-        </div>
-    </div>
-</div> -->
