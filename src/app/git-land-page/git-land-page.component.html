@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="text-primary text-center">Git User Information</h1>
+    <h1 class="text-primary text-center">Git Lookup User</h1>
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" [formGroup]="gitForm"
         (submit)="sendData();">
         <input type="text" placeholder="Enter the username" aria-label="Search"
@@ -29,8 +29,7 @@
         </div>
         <div class="col-lg-8">
             <div *ngIf="gitUserData" class="card">
-
-                <div class="card-body">
+                <div class="card-body text-center">
                     <p class="card-text"><span class="badge badge-light">Public-Repos:{{gitUserData?.public_repos}}</span> &nbsp;
                         <span class="badge badge-light">Followers:{{gitUserData?.followers}}</span> &nbsp;
                         <span class="badge badge-light">Updated At:{{gitUserData?.updated_at | date:'medium'}}</span> &nbsp;</p>
@@ -43,7 +42,7 @@
             </div>
             <hr *ngIf="followersCount">
             <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
-            <div class="container box">                
+            <div class="container">                
                 <div class="row" *ngFor="let item of pageOfFollowers">
                     <div class="card w-50">
                         <div class="card-body">
