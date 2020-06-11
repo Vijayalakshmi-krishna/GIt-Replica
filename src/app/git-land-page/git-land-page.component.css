@@ -47,4 +47,13 @@ button {
   {
     font-size: small;
   }
-  
+
+  .follow
+  { 
+    margin-left:160px
+  }
+  .badge-light {
+    color: #212529;
+    background-color: #f8f9fa;
+    font-size: medium;
+}

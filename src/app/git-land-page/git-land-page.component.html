@@ -41,10 +41,11 @@
                 </div>
             </div>
             <hr *ngIf="followersCount">
-            <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
+            
             <div class="container">                
+                <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
                 <div class="row" *ngFor="let item of pageOfFollowers">
-                    <div class="card w-50">
+                    <div class="card w-50 follow">
                         <div class="card-body">
                             <p class="card-text"><img src="{{item?.avatar_url}}" width="50px" height="50px">&nbsp;<a
                                     href="{{item?.html_url}}">{{item?.login}}</a></p>
