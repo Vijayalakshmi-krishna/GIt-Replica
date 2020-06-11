@@ -38,7 +38,7 @@ export class GitLandPageComponent implements OnInit {
 
       
       this.gituserservice.getgithubuserRepoData(this.gitForm.value.userName).subscribe((data) => {
-        //console.log(data);
+        console.log(data);
         this.repoData = data;
         this.repoCount=Object.keys(this.repoData).length
         ///console.log(this.repoCount)
@@ -48,7 +48,7 @@ export class GitLandPageComponent implements OnInit {
         }
 
         this.gituserservice.getgithubuserfollowerData(this.gitForm.value.userName).subscribe((data) => {
-          //console.log(data);
+          console.log(data);
           this.gitFollowersData = data;
           this.followersCount = Object.keys(data).length
         })

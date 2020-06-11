@@ -1,9 +1,9 @@
 <div class="container">
-    <h1 class="text-primary text-center">Git Hub</h1>
+    <h1 class="text-primary text-center">Git User Information</h1>
     <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" [formGroup]="gitForm"
         (submit)="sendData();">
-        <input type="text" placeholder="Search" aria-label="Search" class="form-control form-control-sm ml-3 w-75"
-            formControlName="userName">
+        <input type="text" placeholder="Enter the username" aria-label="Search"
+            class="form-control form-control-sm ml-3 w-75" formControlName="userName">
 
 
         <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -31,26 +31,24 @@
             <div *ngIf="gitUserData" class="card">
 
                 <div class="card-body">
-                    <a href="#" class="btn btn-secondary">public-repos : {{gitUserData?.public_repos}}</a> &nbsp;
+                    <p class="card-text"><span class="badge badge-light">Public-Repos:{{gitUserData?.public_repos}}</span> &nbsp;
+                        <span class="badge badge-light">Followers:{{gitUserData?.followers}}</span> &nbsp;
+                        <span class="badge badge-light">Updated At:{{gitUserData?.updated_at | date:'medium'}}</span> &nbsp;</p>
 
-                    <a href="#" class="btn btn-secondary">Followers: {{gitUserData?.followers}}</a> &nbsp;
                     <!-- <a href="#" class="btn btn-secondary">Following:{{gitUserData.following}}</a> &nbsp; -->
-                    <a href="#" class="btn btn-secondary">Updated At: {{gitUserData?.updated_at | date:'medium'}}</a>
+
 
 
                 </div>
             </div>
             <hr *ngIf="followersCount">
-            <div class="container">
-                <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
-                <div class="row">
-                    <div class="col" *ngFor="let item of pageOfFollowers">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="{{item?.avatar_url}}" width="50px" height="50px">
-                                <p class="card-text">{{item?.login}}</p>
-                                <p class="card-text"><a href="{{item?.html_url}}">{{item?.html_url}}</a></p>
-                            </div>
+            <h1 *ngIf="followersCount" class="text-primary text-center">Followers</h1>
+            <div class="container box">                
+                <div class="row" *ngFor="let item of pageOfFollowers">
+                    <div class="card w-50">
+                        <div class="card-body">
+                            <p class="card-text"><img src="{{item?.avatar_url}}" width="50px" height="50px">&nbsp;<a
+                                    href="{{item?.html_url}}">{{item?.login}}</a></p>
                         </div>
                     </div>
                 </div>
@@ -70,19 +68,28 @@
     <div class="row">
         <div class="col-lg-4" *ngFor="let item of pageOfItems">
             <div class="card h-100" style="width: 18rem;">
+                <div class="card-header"><h5><a href="{{item.owner.html_url}}/{{item.name}}"
+                        class="card-link header-font">{{item?.name}}</a></h5>
+                        <span class="description-text"><i class="fa fa-code-fork" aria-hidden="true"></i>
+                        </span> {{item?.forks_count}} &nbsp;
+
+                        <span class="description-text"><i class="fa fa-star"></i>
+                        </span> {{item?.stargazers_count}} &nbsp;
+                    </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{item?.name}}</h5>
-                    <p class="card-text"> <a href="{{item.owner.html_url}}/{{item.name}}"
-                            class="card-link">{{item?.owner.html_url}}/{{item?.name}}</a> &nbsp;</p>
-                    <p class="card-text"> <a *ngIf="item.language" href="#" class="btn btn-secondary">
-                            {{item?.language}}</a> &nbsp;
-                        <a *ngIf="item.language" href="#" class="btn btn-secondary"><i class="fa fa-eye"
-                                aria-hidden="true"></i> {{item?.watchers_count}}</a> &nbsp;</p>
+                    <p class="card-text description-text">{{item?.description}}</p>                  
 
                 </div>
+
+                <div class="card-footer text-muted">
+                    <p class="card-text"> <span *ngIf="item.language" class="dot"></span> {{item?.language}} &nbsp;
+                        
+                        <span class="createdat">{{item?.created_at | date:'mediumDate'}}</span>
+                    </p>
+                  </div>
             </div>
         </div>
-       
+
     </div>
 
     <hr *ngIf="repoCount">

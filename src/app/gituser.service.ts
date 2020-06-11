@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class GituserService {
-
+  
   constructor(private http:HttpClient) { }
 
   getgithubuserData(data):Observable<any>
