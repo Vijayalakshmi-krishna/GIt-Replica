@@ -11,16 +11,16 @@ export class GituserService {
 
   getgithubuserData(data):Observable<any>
   {
-    return this.http.get('https://api.github.com/users/'+ data+"?client_id=69d6f012d5d041a1276b &client_secret=0f8048ad7c720439ec49de8ad337c730dfbfef9d");
+    return this.http.get('https://api.github.com/users/'+ data);
   }
 
   getgithubuserRepoData(data):Observable<any>
   {
-    return this.http.get('https://api.github.com/users/'+ data + '/repos?client_id=69d6f012d5d041a1276b & client_secret=0f8048ad7c720439ec49de8ad337c730dfbfef9d');
+    return this.http.get('https://api.github.com/users/'+ data + '/repos');
   }
 
   getgithubuserfollowerData(data):Observable<any>
   {
-    return this.http.get('https://api.github.com/users/'+ data + '/followers?client_id=69d6f012d5d041a1276b & client_secret=0f8048ad7c720439ec49de8ad337c730dfbfef9d');
+    return this.http.get('https://api.github.com/users/'+ data + '/followers');
   }
 }
